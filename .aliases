@@ -1,0 +1,35 @@
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias catdna="cd ~/projects/rcf_projects/catdna"
+alias l="ls -lF ${colorflag}"
+alias d="cd ~/dropbox"
+alias p="cd ~/projects"
+alias all="cd ~/projects/rcf_projects/jura_projects/all_elements"
+alias tp="cd ~/projects/rcf_projects/test-product/"
+alias tg="cd ~/projects/test_generator"
+alias carib="cd ~/projects/rcf_projects/caribbean"
+alias bio="cd ~/projects/rcf_projects/caribbean/biology"
+alias chem="cd ~/projects/rcf_projects/caribbean/chemistry"
+alias phys="cd ~/projects/rcf_projects/caribbean/physics"
+alias prod="cd ~/projects/rcf_projects/production_tools/"
+alias xv="find . -name \"*.xml\" -type f -exec xmllint --noout --schema "
+alias xvalid='find . -name "*.xml" -type f -exec xmllint --noout {} \;'
+alias guid="uuidgen | sed -e \"s/-//g\" | tr 'A-Z' 'a-z'"
+alias sb="cd ~/projects/rcf_projects/rcf-sandbox"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en5"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+
+
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+
+alias freewifi="sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'`"
+
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+	alias "$method"="lwp-request -m '$method'"
+done

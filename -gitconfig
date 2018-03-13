@@ -1,0 +1,60 @@
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+	contributors = shortlog --summary --numbered
+	la = "!git config -l | grep alias | cut -c 7-"
+	lasttag = "!git describe --tags --abbrev=0"
+	unpushed = log --branches --not --remotes --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	filelog = log -u
+	undo = reset --soft HEAD^
+	cleanup = "!git branch --merged | grep -v -E '\\*|master|develop|dev' | xargs git branch -d"
+	taghistory = log --tags --simplify-by-decoration --pretty='format: %ai %d'
+	prune = fetch --prune
+	stash-all = stash save --include-untracked
+	recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+	prune-remote = remote prune origin
+	abortmerge = merge --abort
+
+[user]
+	name = Chris Eastwood
+	email = chris.eastwood@macmillan.com
+[credential]
+	helper = osxkeychain
+[core]
+	editor = subl -n -w
+	excludesfile = /Users/chris.eastwood/.gitignore
+[color]
+	ui = true
+[diff]
+	tool = p4mergetool
+[difftool "p4mergetool"]
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
+[merge]
+	tool = p4mergetool
+[mergetool "p4mergetool"]
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+	trustExitCode = false
+[mergetool]
+	keepBackup = false
+[help]
+	autocorrect = 1
+
+[instaweb]
+	httpd = webrick
+	port = 4001
+	browser = open
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = simple
+	followTags = true
+[status]
+	showUntrackedFiles = all
